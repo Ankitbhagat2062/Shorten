@@ -23,8 +23,6 @@ export async function POST(request) {
             return Response.json({ success: false, error: true, message: "Missing required fields: shortenedUrl and timestamp" }, { status: 400 });
         }
 
-        console.log("Received data:", { shortenedUrl, location, device, timestamp, userId, referer, platform });
-
         const client = await clientPromise;
         const db = client.db('Shorten');
         const collection = db.collection('urls');
@@ -57,8 +55,6 @@ export async function POST(request) {
                     ]
                 }
             );
-            console.log("Update result:", result.matchedCount);
-            console.log("userid found - returning success",location);
             return Response.json({ success: true, error: true, message: "New visit of same user added successfully" });
         }
 

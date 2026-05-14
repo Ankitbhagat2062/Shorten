@@ -36,8 +36,6 @@ const Form = ({button}) => {
             const response = await fetch("http://localhost:3000/api/shorten", requestOptions);
             const result = await response.json();
 
-            console.log(result);
-
             if (result.success) {
                 setShortenedResult(`${process.env.NEXT_PUBLIC_BASE_URL}/${currentShortenedUrl}`);
             } else {
@@ -45,14 +43,12 @@ const Form = ({button}) => {
                 setShortenedResult(`${process.env.NEXT_PUBLIC_BASE_URL}/${result.shorturl}`);
             }
         } catch (err) {
-            console.log('error', err);
             setError(err.message);
         }
 
         setLoading(false);
         setOriginalUrl('');
         setCurrentShortenedUrl('');
-        console.log("SHORTENED RESULT:", shortenedResult);
     };
 
     return (

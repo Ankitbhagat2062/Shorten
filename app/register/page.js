@@ -86,7 +86,6 @@ const Register = () => {
     });
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    console.log(deviceId)
     var raw = JSON.stringify({
       "email": formData.email,
       "deviceId": deviceId
@@ -106,7 +105,6 @@ const Register = () => {
           addToast(result.message, 'success');
         }
         else {
-        console.log(result);
           addToast(result.message, 'error')
         }
       })
@@ -189,7 +187,7 @@ const Register = () => {
 
   const handleEmailOTP = () => {
     setStep(1)
-    console.log('Signing in with Email OTP');
+      addToast('Signing in with Email OTP','info');
   };
 
   return (

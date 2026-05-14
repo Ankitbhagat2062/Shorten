@@ -16,11 +16,7 @@ const Analytics = () => {
   const [activeChart, setActiveChart] = useState('hourly');
   const { deviceId, urlData, analyticsData, setSingleUrlData } = useUrlStore();
   const { isOpen } = useSidebar();
-  // Data fetches here the first time.
-
-  useEffect(() => {
-    console.log(analyticsData ? 'Data fetched successfully' : 'Error fetching data');
-  }, [deviceId])
+  
   if (!analyticsData) {
     return (
       <>
@@ -99,7 +95,7 @@ const Analytics = () => {
             </div>
             <div className={`flex items-center ${isOpen ? 'gap-4 ' : 'gap-0.5'}`}>
               {/* Date Range Filter */}
-              <div className="relative input-glass sm:px-4 !p-1">
+              <div className="relative input-glass sm:px-4 p-1!">
                 <CalendarIcon className="absolute left-2 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
                 <select
                   value={dateRange}

@@ -52,7 +52,6 @@ const ShortUrl = () => {
             }
 
             const data = await res.json();
-            console.log("Location found:", data.location);
             // Extract the fields you need
             location = {
               city: data?.city || data?.locality,
@@ -68,7 +67,6 @@ const ShortUrl = () => {
               longitude
             };
 
-            console.log("Location resolved:", location);
             resolve({ location, userId, referer, platform });
           } catch (error) {
             console.error("Geocoding failed:", error);
@@ -127,7 +125,6 @@ const ShortUrl = () => {
     }
 
     const rawReferrer = document.referrer || 'Direct';
-    // console.log('document ', document.referrer)
 
     // Simple platform identification logic
     let platform = 'Other';

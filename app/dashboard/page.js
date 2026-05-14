@@ -75,7 +75,7 @@ const Dashboard = () => {
                 if (result.success) addToast(`Deleted "${url.shortName}"`, 'success');
                 else addToast(`Error Deleting "${url.shortName}"`, 'error');
             })
-            .catch(error => console.log('error', error));
+            .catch(error => setToasts(prev => [...prev, { id :"error", message: error.message, type: "error" }]));
     };
 
     const confirmDelete = (url) => {
@@ -136,7 +136,6 @@ const Dashboard = () => {
             const response = await fetch("http://localhost:3000/api/shorten", requestOptions);
             const result = await response.json();
 
-            console.log(result);
 
             if (result.success) {
                 addToast(result.message, 'success')
@@ -146,7 +145,6 @@ const Dashboard = () => {
                 setError(result.message);
             }
         } catch (err) {
-            console.log('error', err);
             setError(err.message);
         }
 

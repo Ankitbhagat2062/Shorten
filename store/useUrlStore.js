@@ -71,7 +71,6 @@ export const useUrlStore = create((set, get) => ({
 
     const data = await response.json();
     if (data.success && data.data) {
-      // console.log('hello', data)
       // Store raw datayes
 
       setUrlData(data.data);

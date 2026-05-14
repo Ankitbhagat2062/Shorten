@@ -13,7 +13,6 @@ export async function POST(req) {
         //     // 2. Send the OTP via email
         const existingDevice = await collection.findOne({ deviceId: deviceId });
         const result = await sendMail("Your OTP Code", email, `Your OTP is ${otp}`);
-        console.log(result)
         if (!result.success) {
             return NextResponse.json({ message: result.message, error: result.error, success: result.success }, { status: 400 });
         }
