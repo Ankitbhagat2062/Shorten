@@ -48,3 +48,4 @@ Project Settings -> Environment Variables:
 - `NEXT_PUBLIC_BASE_URL`
 - `GITHUB_ID` and `GITHUB_SECRET`
 - `GOOGLE_ID` and `GOOGLE_SECRET`
+- `ipstack_ACCESSKEY`
