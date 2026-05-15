@@ -34,16 +34,25 @@ const Form = ({button}) => {
 
         try {
             const response = await fetch("/api/shorten", requestOptions);
+
+            if (!response.ok) {
+                const text = await response.text().catch(() => '');
+                setError(`Request failed: ${response.status} ${response.statusText}${text ? ` - ${text}` : ''}`);
+                return;
+            }
+
             const result = await response.json();
 
             if (result.success) {
                 setShortenedResult(`${window.location.origin}/${currentShortenedUrl}`);
             } else {
-                setError(result.message);
-                setShortenedResult(`${window.location.origin}/${result.shorturl}`);
+                setError(result.message || 'Shortening failed');
+                if (result.shorturl) {
+                    setShortenedResult(`${window.location.origin}/${result.shorturl}`);
+                }
             }
         } catch (err) {
-            setError(err.message);
+            setError(err?.message || 'Network error');
         }
 
         setLoading(false);
