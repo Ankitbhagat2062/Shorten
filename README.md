@@ -36,3 +36,15 @@
 - SignUp/Login page ( With google , github and email otp ) . No password required to create an account.
   
 - Dashboard Page :- Total url created , total views/clicks , option to delete shortened url , option to change shorturl name .
+
+## Deployment environment variables
+
+NextAuth requires a stable secret in production. In Vercel, add these variables under
+Project Settings -> Environment Variables:
+
+- `NEXTAUTH_SECRET`: a random secret, for example from `openssl rand -base64 32`
+- `NEXTAUTH_URL`: your production URL, for example `https://your-app.vercel.app`
+- `MONGODB_URI`
+- `NEXT_PUBLIC_BASE_URL`
+- `GITHUB_ID` and `GITHUB_SECRET`
+- `GOOGLE_ID` and `GOOGLE_SECRET`

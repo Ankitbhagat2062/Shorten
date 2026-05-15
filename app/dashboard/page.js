@@ -25,6 +25,7 @@ const Dashboard = () => {
         if (mockUrls.length > 0) {
             setUrls(mockUrls);
         }
+        console.log(mockUrls)
     }, [mockUrls]);
 
     if (!analyticsData) {
