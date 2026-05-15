@@ -33,14 +33,14 @@ const Form = ({button}) => {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/api/shorten", requestOptions);
+            const response = await fetch("/api/shorten", requestOptions);
             const result = await response.json();
 
             if (result.success) {
-                setShortenedResult(`${process.env.NEXT_PUBLIC_BASE_URL}/${currentShortenedUrl}`);
+                setShortenedResult(`${window.location.origin}/${currentShortenedUrl}`);
             } else {
                 setError(result.message);
-                setShortenedResult(`${process.env.NEXT_PUBLIC_BASE_URL}/${result.shorturl}`);
+                setShortenedResult(`${window.location.origin}/${result.shorturl}`);
             }
         } catch (err) {
             setError(err.message);
