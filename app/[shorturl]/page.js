@@ -120,7 +120,6 @@ const ShortUrl = () => {
 
   const getReferer = () => {
     if (typeof document === 'undefined') {
-      console.log('document is undefined')
       return { rawReferrer: 'Direct', platform: 'Other' };
     }
 

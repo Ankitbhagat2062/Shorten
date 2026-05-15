@@ -27,7 +27,6 @@ const SingleUrlAnalytics = () => {
     setSingleUrlData(singleUrldata);
   }, [urlData, shortCode, setSingleUrlData])
 
-
   const { urlInfo, stats, geographicData, deviceData, referrerData, timelineData, conversionData, clickHistory } = singleUrlData;
   const shorturlname = urlInfo.shortUrl.split('/')[3]
   // Hook for countdown timer and redirect

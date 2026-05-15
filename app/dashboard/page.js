@@ -25,9 +25,7 @@ const Dashboard = () => {
         if (mockUrls.length > 0) {
             setUrls(mockUrls);
         }
-        console.log(mockUrls)
     }, [mockUrls]);
-
     if (!analyticsData) {
         return (
             <>
@@ -56,13 +54,13 @@ const Dashboard = () => {
     const handleDelete = async (url) => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
+        let deviceID;
+        deviceId ? deviceID = deviceId : deviceID = localStorage.getItem('deviceId');
         var raw = JSON.stringify({
-            "deviceId": deviceId,
+            "deviceId": deviceID,
             "shortUrl": url.shortName,
             "originalUrl": url.originalUrl
         });
-
         var requestOptions = {
             method: 'DELETE',
             headers: myHeaders,
@@ -70,7 +68,7 @@ const Dashboard = () => {
             redirect: 'follow'
         };
 
-        await fetch("http://localhost:3000/api/delete-url", requestOptions)
+        await fetch("/api/delete-url", requestOptions)
             .then(response => response.json())
             .then(result => {
                 if (result.success) addToast(`Deleted "${url.shortName}"`, 'success');
@@ -88,9 +86,9 @@ const Dashboard = () => {
     const handleConfirmDelete = () => {
         if (urlToDelete) {
             handleDelete(urlToDelete);
+            setShowDelete(false);
+            setUrlToDelete(null);
         }
-        setShowDelete(false);
-        setUrlToDelete(null);
     };
 
     const handleCancelDelete = () => {
@@ -134,7 +132,7 @@ const Dashboard = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:3000/api/shorten", requestOptions);
+            const response = await fetch("/api/shorten", requestOptions);
             const result = await response.json();
 
 

@@ -6,7 +6,7 @@ export async function DELETE(request) {
     const client = await clientPromise;
     const db = client.db('Shorten');
     const collection = db.collection('urls')
-    
+    console.log('Received delete request for shortUrl:', shortUrl, 'deviceId:', deviceId, 'originalUrl:', originalUrl);
     let existingUrl = await collection.findOne({ 
         deviceId: deviceId, 
         totalUrls: { $elemMatch: { shortenedUrl: shortUrl, originalUrl: originalUrl } } 

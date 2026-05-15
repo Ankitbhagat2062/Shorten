@@ -98,7 +98,7 @@ const Register = () => {
       redirect: 'follow'
     };
 
-    await fetch("http://localhost:3000/api/send-otp", requestOptions)
+    await fetch("/api/send-otp", requestOptions)
       .then(response => response.json())
       .then(result => {
         if (result.success) {

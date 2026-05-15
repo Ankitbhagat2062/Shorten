@@ -17,7 +17,7 @@ const Analytics = () => {
   const { deviceId, urlData, analyticsData, setSingleUrlData } = useUrlStore();
   const { isOpen } = useSidebar();
   
-  if (!analyticsData) {
+  if (!analyticsData || analyticsData.overview.totalClicks === 0) {
     return (
       <>
         <AsideWrapper >
@@ -125,7 +125,7 @@ const Analytics = () => {
             <StatsCard
               icon={LinkIcon}
               title="Total Clicks"
-              value={analyticsData.overview.totalClicks}
+              value={analyticsData?.overview.totalClicks}
               change={12.5}
               changeType="positive"
               delay={100}
@@ -133,7 +133,7 @@ const Analytics = () => {
             <StatsCard
               icon={UserIcon}
               title="Return Users"
-              value={analyticsData.overview.returnUsers}
+              value={analyticsData?.overview.returnUsers}
               change={8.3}
               changeType="positive"
               delay={200}
@@ -141,7 +141,7 @@ const Analytics = () => {
             <StatsCard
               icon={ProfileIcon}
               title="Real Users"
-              value={analyticsData.overview.realUsers}
+              value={analyticsData?.overview.realUsers}
               change={15.2}
               changeType="positive"
               delay={300}
@@ -149,7 +149,7 @@ const Analytics = () => {
             <StatsCard
               icon={ClockIcon}
               title="Peak Visit Time"
-              value={analyticsData.overview.peakTime}
+              value={analyticsData?.overview.peakTime}
               change={2.1}
               changeType="negative"
               delay={400}

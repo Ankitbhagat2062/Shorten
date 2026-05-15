@@ -39,7 +39,6 @@ export async function POST(request) {
         });
 
         if (existingUser) {
-            console.log("Updating existing user visit...");
             // Use arrayFilters to update the nested array element
             const result = await collection.updateOne(
                 { "totalUrls.shortenedUrl": shortenedUrl },
@@ -58,12 +57,10 @@ export async function POST(request) {
             return Response.json({ success: true, error: true, message: "New visit of same user added successfully" });
         }
 
-        console.log("Adding new user...");
         const result = await collection.updateOne(
             { "totalUrls.shortenedUrl": shortenedUrl },
             { $push: { "totalUrls.$.clicks": { userId, visits: [visit] } } }
         );
-        console.log("Update result:", result.matchedCount);
 
         return Response.json({ success: true, error: true, message: "Users data updated successfully" });
     } catch (error) {
